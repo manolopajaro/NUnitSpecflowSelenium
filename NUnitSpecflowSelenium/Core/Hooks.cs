@@ -1,9 +1,12 @@
-﻿using NUnitSpecflowSelenium.Test.Configuration;
+﻿using AventStack.ExtentReports.Reporter;
+using BoDi;
+using NUnitSpecflowSelenium.Test.Configuration;
 using NUnitSpecflowSelenium.Test.Configuration.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -35,6 +38,17 @@ namespace NUnitSpecflowSelenium.Test.Core
         #endregion
 
         #region Report generation
+
+        [BeforeTestRun]
+        public static void RegisterExtentReport(IObjectContainer objectContainer, TestContext testContext)
+        {
+            var report = new ExtentHtmlReporter(testContext.UniqueOutputDirectory);
+            var extent = new AventStack.ExtentReports.ExtentReports();
+            extent.AttachReporter(report);
+
+            objectContainer.RegisterInstanceAs(extent);
+        }
+
         [BeforeFeature]
         public static void SetUpFeature(FeatureContext featureContext, TestContext testContext)
         {
@@ -128,6 +142,12 @@ namespace NUnitSpecflowSelenium.Test.Core
                     File.WriteAllText(fullReportPath, reportGenerator.BuildFullReport(featureDto));
                 }
             }
+        }
+
+        [AfterTestRun]
+        public static void FlushExtentReport(AventStack.ExtentReports.ExtentReports extent)
+        {
+            extent.Flush();
         }
         #endregion
 
