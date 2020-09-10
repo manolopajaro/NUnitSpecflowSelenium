@@ -20,23 +20,22 @@ namespace NUnitSpecflowSelenium.Test.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Demo")]
-    public partial class DemoFeature
+    [NUnit.Framework.DescriptionAttribute("Google Search")]
+    public partial class GoogleSearchFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Demo.feature"
+#line 1 "Search.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Demo", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-                    "f two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Google Search", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,15 +74,23 @@ namespace NUnitSpecflowSelenium.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User Details form entry verification")]
+        [NUnit.Framework.DescriptionAttribute("Search results must not exceed 10 items per page")]
         [NUnit.Framework.CategoryAttribute("UI")]
-        public virtual void UserDetailsFormEntryVerification()
+        [NUnit.Framework.TestCaseAttribute("The name of the wind", null)]
+        [NUnit.Framework.TestCaseAttribute("MAS Global", null)]
+        public virtual void SearchResultsMustNotExceed10ItemsPerPage(string criteria, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "UI"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User Details form entry verification", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+            argumentsOfScenario.Add("Criteria", criteria);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search results must not exceed 10 items per page", null, tagsOfScenario, argumentsOfScenario);
+#line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -103,44 +110,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "UserName",
-                            "Password"});
-                table1.AddRow(new string[] {
-                            "admin",
-                            "admin"});
-#line 8
- testRunner.Given("I enter username and password", ((string)(null)), table1, "Given ");
+#line 5
+    testRunner.Given(string.Format("The user searches for {0}", criteria), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
- testRunner.And("I click login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 6
+    testRunner.When("Displaying search results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Initial",
-                            "FirstName",
-                            "MiddleName",
-                            "Language"});
-                table2.AddRow(new string[] {
-                            "k",
-                            "Karthik",
-                            "k",
-                            "Hindi"});
-#line 12
- testRunner.And("I start entering user form details like", ((string)(null)), table2, "And ");
-#line hidden
-#line 15
- testRunner.And("I click submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Initial",
-                            "FirstName",
-                            "MiddleName"});
-                table3.AddRow(new string[] {
-                            "k",
-                            "Karthik",
-                            "k"});
-#line 16
- testRunner.And("I verify the entered user form details in the application database", ((string)(null)), table3, "And ");
+#line 7
+    testRunner.Then("the number of results must not exceed 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

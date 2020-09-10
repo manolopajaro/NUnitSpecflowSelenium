@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.ObjectModel;
 
 namespace NUnitSpecflowSelenium.Test.Core
 {
@@ -16,6 +17,11 @@ namespace NUnitSpecflowSelenium.Test.Core
         public IWebElement FindElement(By locator)
         {
             return Driver.FindElement(locator);
+        }
+
+        public ReadOnlyCollection<IWebElement> FindElements(By locator)
+        {
+            return Driver.FindElements(locator);
         }
 
         public E WaitUntil<E>(Func<IWebDriver, E> condition)
